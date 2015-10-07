@@ -7,7 +7,7 @@ var express = require('express'),
   routes = require('./routes'),
   config = require('./config'),
   streamHandler = require('./utils/streamHandler');
-
+  databaseDB = require('./database');
 // Create an express instance and set a port variable
 var app = express();
 var port = process.env.PORT || 8080;
@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars');
 app.disable('etag');
 
 // Connect to our mongo database
-mongoose.connect('mongodb://localhost/react-tweets');
+mongoose.connect(databaseDB.url); // connect to our database
 
 // Create a new ntwitter instance
 var twit = new twitter(config.twitter);
@@ -46,3 +46,6 @@ var io = require('socket.io').listen(server);
 twit.stream('statuses/filter',{ track: 'javascript'}, function(stream){
   streamHandler(stream,io);
 });
+
+app.listen(port);
+console.log('Connect to localhost: ' port);
