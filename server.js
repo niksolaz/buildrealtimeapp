@@ -10,7 +10,7 @@ var express = require('express'),
   databaseDB = require('./database');
 // Create an express instance and set a port variable
 var app = express();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 // Set handlebars as the templating engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
@@ -46,6 +46,3 @@ var io = require('socket.io').listen(server);
 twit.stream('statuses/filter',{ track: 'javascript'}, function(stream){
   streamHandler(stream,io);
 });
-
-app.listen(port);
-console.log('Connect to localhost: ' port);
