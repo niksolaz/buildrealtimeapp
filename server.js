@@ -6,7 +6,7 @@ var express = require('express'),
   twitter = require('twitter'),
   routes = require('./routes'),
   config = require('./config'),
-  streamHandler = require('./utils/streamHandler');
+  streamHandler = require('./utils/streamHandler'),
   databaseDB = require('./database');
 // Create an express instance and set a port variable
 var app = express();
